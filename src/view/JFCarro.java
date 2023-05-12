@@ -13,6 +13,7 @@ import servicos.PessoaServicos;
 import servicos.ServicosFactory;
 import util.Validadores;
 
+
 /**
  *
  * @author 201401665
@@ -26,6 +27,7 @@ public class JFCarro extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         jbDeletarCarro.setVisible(false);
+        addRowToTable();
     }
 
     public void addRowToTable(){
@@ -35,10 +37,10 @@ public class JFCarro extends javax.swing.JFrame {
         Object rowData[] = new Object[4];
         CarroServicos carroS = ServicosFactory.getCarroServicos();
         for (Carro carro : carroS.getCarro()) {
-            rowData[0] = carro.getPlaca();
-            rowData[1] = carro.getMarca();
-            rowData[2] = carro.getModelo();
-            rowData[3] = carro.getProprietario().getNome();
+            rowData[0] = carro.getProprietario().getNome();
+            rowData[1] = carro.getPlaca();
+            rowData[2] = carro.getMarca();
+            rowData[3] = carro.getModelo();
             model.addRow(rowData);
         }
     }
@@ -552,83 +554,86 @@ public class JFCarro extends javax.swing.JFrame {
 
         bgCambio.add(jrbAutomatico);
         jrbAutomatico.setText("Automatico");
+        jrbAutomatico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbAutomaticoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
             .addComponent(jSeparator4, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jSeparator3)
-            .addComponent(jScrollPane2)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jbDeletarCarro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbEditarCarro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbSalvarCarro)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbLimparCarro)
-                        .addGap(18, 18, 18)
-                        .addComponent(jbFecharCarro)
-                        .addGap(23, 23, 23))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 446, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(3, 3, 3)
-                                .addComponent(jftAnoFab))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jbDeletarCarro)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jbEditarCarro)
+                                .addGap(28, 28, 28)
+                                .addComponent(jbSalvarCarro)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbLimparCarro)
+                                .addGap(18, 18, 18)
+                                .addComponent(jbFecharCarro))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 427, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel2Layout.createSequentialGroup()
                                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel8)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jtfMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(jPanel2Layout.createSequentialGroup()
                                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                             .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jrbManual)
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jrbAutomatico)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfModelo))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel12)
-                                .addGap(4, 4, 4)
-                                .addComponent(jtfCor))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jcbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jLabel11)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jftAnoMod)))
-                                .addGap(18, 18, 18))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(3, 3, 3)
-                        .addComponent(jtfProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlPropri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(12, 12, 12))))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jLabel12))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jtfModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
+                                        .addComponent(jtfCor)))
+                                .addGroup(jPanel2Layout.createSequentialGroup()
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel15)
+                                            .addGap(3, 3, 3)
+                                            .addComponent(jtfProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jlPropri, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(jLabel10)
+                                            .addGap(4, 4, 4)
+                                            .addComponent(jftAnoFab, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jftAnoMod, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                            .addGap(34, 34, 34)
+                            .addComponent(jLabel13)
+                            .addGap(18, 18, 18)
+                            .addComponent(jrbManual)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jrbAutomatico)
+                            .addGap(18, 18, 18)
+                            .addComponent(jLabel14)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jcbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -636,12 +641,17 @@ public class JFCarro extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jtfProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlPropri))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
+                    .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jtfCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtfPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfCor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
@@ -650,32 +660,27 @@ public class JFCarro extends javax.swing.JFrame {
                     .addComponent(jtfModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(jLabel10)
                     .addComponent(jftAnoFab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel11)
                     .addComponent(jftAnoMod, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jLabel14)
-                    .addComponent(jcbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jrbManual)
-                    .addComponent(jrbAutomatico))
-                .addGap(9, 9, 9)
+                    .addComponent(jrbAutomatico)
+                    .addComponent(jLabel14)
+                    .addComponent(jcbCombustivel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jtfProprietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jlPropri))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbLimparCarro)
-                    .addComponent(jbFecharCarro)
-                    .addComponent(jbSalvarCarro)
+                    .addComponent(jbDeletarCarro)
                     .addComponent(jbEditarCarro)
-                    .addComponent(jbDeletarCarro))
+                    .addComponent(jbSalvarCarro)
+                    .addComponent(jbLimparCarro)
+                    .addComponent(jbFecharCarro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -688,7 +693,9 @@ public class JFCarro extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -733,6 +740,17 @@ public class JFCarro extends javax.swing.JFrame {
         jbEditarCarro.setEnabled(true);
     }//GEN-LAST:event_jtPessoasMouseClicked
 
+    private void jrbAutomaticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbAutomaticoActionPerformed
+        // TODO add your handling code here:
+        bgCambio2 = evt.getActionCommand();
+
+    }//GEN-LAST:event_jrbAutomaticoActionPerformed
+
+    private void jrbManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbManualActionPerformed
+        // TODO add your handling code here:
+        bgCambio2 = evt.getActionCommand();
+    }//GEN-LAST:event_jrbManualActionPerformed
+
     private void jcbCombustivelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbCombustivelActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jcbCombustivelActionPerformed
@@ -762,7 +780,7 @@ public class JFCarro extends javax.swing.JFrame {
         int anoFab = Integer.parseInt(jftAnoFab.getText());
         int anoMod = Integer.parseInt(jftAnoMod.getText());
 
-        if (Validadores.validarAnoCarro(anoFab, anoMod)) {
+        if (!Validadores.validarAnoCarro(anoFab, anoMod)) {
             JOptionPane.showMessageDialog(this, "Informações de ano inválidas");
             jftAnoFab.requestFocus();
         }
@@ -803,6 +821,7 @@ public class JFCarro extends javax.swing.JFrame {
 
     private void jtfProprietarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfProprietarioFocusLost
         // TODO add your handling code here:
+        if (!jtfProprietario.getText().equals("")) {
         PessoaServicos pessoaS = ServicosFactory.getPessoaServicos();
         String cpf,nome;
         cpf = jtfProprietario.getText();
@@ -827,9 +846,8 @@ public class JFCarro extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "CPF invalido!");
             jtfProprietario.requestFocus();
             jlPropri.setText(" ");
-
+            }
         }
-
     }//GEN-LAST:event_jtfProprietarioFocusLost
 
     private void jtfModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfModeloActionPerformed
@@ -873,12 +891,11 @@ public class JFCarro extends javax.swing.JFrame {
             int anoFab = Integer.parseInt(jftAnoFab.getText());
             int anoMod = Integer.parseInt(jftAnoMod.getText());
             String cor = jtfCor.getText().toUpperCase();
-            String cambio = bgCambio.getSelection().toString();
+            String tpCambio = bgCambio2.toUpperCase();
             String combustivel = jcbCombustivel.getSelectedItem().toString();
             Pessoa proprietario = pessoaS.getPessoaByDoc(jtfProprietario.getText());
 
-            Carro c = new Carro(placa, marca, modelo, anoFab, anoMod, cor, cambio, combustivel, proprietario);
-            carroS.cadastroCarro(c);
+            Carro c = new Carro(placa, marca, modelo, anoFab, anoMod, cor, tpCambio, combustivel, proprietario);
             if (jbSalvar.getText().equals("Salvar")) {
                 carroS.cadastroCarro(c);
             } else {
@@ -888,7 +905,6 @@ public class JFCarro extends javax.swing.JFrame {
             limparCampos();
 
         }
-
     }//GEN-LAST:event_jbSalvarCarroActionPerformed
 
     private void jbEditarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarCarroActionPerformed
@@ -896,16 +912,34 @@ public class JFCarro extends javax.swing.JFrame {
         jbDeletarCarro.setVisible(false);
         jbSalvarCarro.setText("Confirmar");
         jbLimparCarro.setText("Cancelar");
+        
+        int linha = jtCarros.getSelectedRow();
+        String placa = (String) jtCarros.getValueAt(linha, 0);
+        CarroServicos carroS = ServicosFactory.getCarroServicos();
+        Carro c = carroS.getCarroByDoc(placa);
+        jtfProprietario.setText(c.getProprietario().getCpf());
+        jtfPlaca.setText(c.getPlaca());
+        jftAnoFab.setText(Integer.toString(c.getAnoFab()));
+        jftAnoMod.setText(Integer.toString(c.getAnoMod()));
+        jtfCor.setText(c.getCor());
+        jtfMarca.setText(c.getMarca());
+        jtfModelo.setText(c.getModelo());
+        jcbCombustivel.setSelectedItem(c.getCombustivel());
+        if (c.getTpCambio().equals("Manual")) {
+            jrbManual.setSelected(true);
+        }else{
+            jrbAutomatico.setSelected(true);
+        }
+        
     }//GEN-LAST:event_jbEditarCarroActionPerformed
 
     private void jbDeletarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarCarroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbDeletarCarroActionPerformed
-
-    private void jrbManualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbManualActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jrbManualActionPerformed
-    public void limparCampos(){
+    private static String bgCambio2;
+   
+            
+        public void limparCampos(){
         jtfPlaca.setText("");
         jtfCor.setText("");
         jtfMarca.setText("");

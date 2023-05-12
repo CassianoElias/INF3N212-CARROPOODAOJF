@@ -12,7 +12,7 @@ create table pessoas(
 
 create	table	carros(
 	idCarro int PRIMARY key auto_increment,
-	 placa varchar(7) not null,
+	 placa varchar(8) not null,
 	 marca varchar (30),
      modelo varchar (30),
 	 anoFab int (4) #check(anoMod >= anoFab or anoMod - anoFab = 1),
