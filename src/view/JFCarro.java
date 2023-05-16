@@ -873,6 +873,7 @@ public class JFCarro extends javax.swing.JFrame {
         }else{
             jbEditarCarro.setEnabled(false);
             jbLimparCarro.setText("Limpar");
+            jtfPlaca.setEnabled(true);
             limparCampos();
         }
     }//GEN-LAST:event_jbLimparCarroActionPerformed
@@ -898,7 +899,6 @@ public class JFCarro extends javax.swing.JFrame {
             } else {
                 carroS.atualizarCarro(c);
             }
-            addRowToTable();
             limparCampos();
 
         }
