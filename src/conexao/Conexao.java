@@ -12,10 +12,16 @@ import java.sql.SQLException;
  *
  * @author 201401665
  */
-public class Conexao {
+/*public class Conexao {
   private static String host = "jdbc:mysql://localhost:3306/carro";  
   private static String user = "root";
   private static String pass = "";
+  */
+  
+  public class Conexao {
+  private static String host = "jdbc:mysql://https://db4free.net:3306/carroscassiano";  
+  private static String user = "cassianoelias";
+  private static String pass = "15821582";
   
   public static Connection getConexao() throws SQLException{
       Connection c = null;

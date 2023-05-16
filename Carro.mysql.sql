@@ -21,7 +21,7 @@ create	table	carros(
 	 tpCambio varchar(30),
 	 combustivel varchar (30),
      proprietario int,
-     foreign key (proprietario) references pessoa(idPessoa)
+     foreign key (proprietario) references pessoas(idPessoa)
 );
        
         

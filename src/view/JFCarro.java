@@ -728,9 +728,6 @@ public class JFCarro extends javax.swing.JFrame {
 
     private void jbEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbEditarActionPerformed
         // TODO add your handling code here:
-        jbDeletarCarro.setVisible(false);
-        jbSalvarCarro.setText("Confirmar");
-        jbLimparCarro.setText("Cancelar");
 
     }//GEN-LAST:event_jbEditarActionPerformed
 
@@ -912,12 +909,15 @@ public class JFCarro extends javax.swing.JFrame {
         jbDeletarCarro.setVisible(false);
         jbSalvarCarro.setText("Confirmar");
         jbLimparCarro.setText("Cancelar");
+        jtfPlaca.setEnabled(false);
+        
         
         int linha = jtCarros.getSelectedRow();
-        String placa = (String) jtCarros.getValueAt(linha, 0);
+        String placa = (String) jtCarros.getValueAt(linha, 1);
         CarroServicos carroS = ServicosFactory.getCarroServicos();
         Carro c = carroS.getCarroByDoc(placa);
         jtfProprietario.setText(c.getProprietario().getCpf());
+        jlPropri.setText(c.getProprietario().getNome());
         jtfPlaca.setText(c.getPlaca());
         jftAnoFab.setText(Integer.toString(c.getAnoFab()));
         jftAnoMod.setText(Integer.toString(c.getAnoMod()));
@@ -925,6 +925,7 @@ public class JFCarro extends javax.swing.JFrame {
         jtfMarca.setText(c.getMarca());
         jtfModelo.setText(c.getModelo());
         jcbCombustivel.setSelectedItem(c.getCombustivel());
+        bgCambio2 = c.getTpCambio();
         if (c.getTpCambio().equals("Manual")) {
             jrbManual.setSelected(true);
         }else{
@@ -935,6 +936,22 @@ public class JFCarro extends javax.swing.JFrame {
 
     private void jbDeletarCarroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDeletarCarroActionPerformed
         // TODO add your handling code here:
+        int linha = jtCarros.getSelectedRow();
+        String placa = (String) jtCarros.getValueAt(linha, 1);
+        CarroServicos carroS = ServicosFactory.getCarroServicos();
+        Object[] btnMSG = {"Sim", "Não"};
+        int resp = JOptionPane.showOptionDialog(this,
+                "Deseja realmente deletar " + placa, ".: Deletar :.",
+                JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE,
+                null, btnMSG, btnMSG[0]);
+        if (resp == 0) {
+            carroS.deletarCarro(placa);
+            addRowToTable();
+            JOptionPane.showMessageDialog(this, "Carro deletado com sucesso!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Ok, delete cancelado pelo usuário!");
+        }
+        
     }//GEN-LAST:event_jbDeletarCarroActionPerformed
     private static String bgCambio2;
    
